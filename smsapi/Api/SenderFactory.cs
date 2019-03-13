@@ -3,9 +3,16 @@
     public class SenderFactory : Factory
     {
         public SenderFactory()
-        { }
-        public SenderFactory(Client client) : base(client) { }
-        public SenderFactory(Client client, IProxy proxy) : base(client, proxy) { }
+        {
+        }
+
+        public SenderFactory(Client client) : base(client)
+        {
+        }
+
+        public SenderFactory(Client client, IProxy proxy) : base(client, proxy)
+        {
+        }
 
         public Action.SenderAdd ActionAdd(string name = null)
         {

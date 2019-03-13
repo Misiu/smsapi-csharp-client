@@ -21,14 +21,14 @@ namespace smsapiTests.Contacts
         public void Initialize()
         {
             var contactsResponse = contactsFactory.ListContacts().SetPhoneNumber(validTestNumber).Execute();
-            if (contactsResponse.List.Count > 0)
-                contact = contactsResponse.List[0];
+            if (contactsResponse.Collection.Count > 0)
+                contact = contactsResponse.Collection[0];
             else
                 contact = contactsFactory.CreateContact().SetPhoneNumber(validTestNumber).Execute();
 
             var groupsResponse = contactsFactory.ListGroups().SetName("example group").Execute();
-            if (groupsResponse.List.Count > 0)
-                group = groupsResponse.List[0];
+            if (groupsResponse.Collection.Count > 0)
+                group = groupsResponse.Collection[0];
             else
                 group = contactsFactory.CreateGroup().SetName("example group").Execute();
         }

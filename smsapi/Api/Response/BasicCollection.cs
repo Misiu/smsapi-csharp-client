@@ -21,12 +21,7 @@ namespace SMSApi.Api.Response
         [Obsolete("use Size instead")]
         public override int Count => Size;
 
-        public System.Collections.Generic.List<T> Collection
-        {
-            get => collection ?? (collection = new System.Collections.Generic.List<T>());
-
-            set { }
-        }
+        public System.Collections.Generic.List<T> Collection => collection ?? (collection = new System.Collections.Generic.List<T>());
 
         [Obsolete("use Collection instead")]
         [DataMember(Name = "list", IsRequired = false)]

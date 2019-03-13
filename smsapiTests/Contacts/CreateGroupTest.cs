@@ -20,7 +20,7 @@ namespace smsapiTests.Contacts
         public void Initialize()
         {
             var groups = contactsFactory.ListGroups().SetName("exampleGroup").Execute();
-            foreach (var group in groups.List) {
+            foreach (var group in groups.Collection) {
                 contactsFactory.DeleteGroup(group.Id).Execute();
             }
         }

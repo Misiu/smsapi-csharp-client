@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
 namespace SMSApi.Api.Response
 {
@@ -10,7 +6,8 @@ namespace SMSApi.Api.Response
     public class User : Base
     {
         private User()
-        { }
+        {
+        }
 
         [DataMember(Name = "username", IsRequired = true)]
         public readonly string Username;

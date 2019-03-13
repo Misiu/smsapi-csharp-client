@@ -10,10 +10,7 @@ namespace SMSApi.Api.Action
             _limit = 0;
         }
 
-        protected override string Uri()
-        {
-            return "phonebook.do";
-        }
+        protected override string Uri() => "phonebook.do";
 
         private string _number;
         private string[] _groups;

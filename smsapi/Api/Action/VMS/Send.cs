@@ -7,10 +7,7 @@ namespace SMSApi.Api.Action
 {
     public class VMSSend : Send
     {
-        protected override string Uri()
-        {
-            return "vms.do";
-        }
+        protected override string Uri() => "vms.do";
 
         protected override Dictionary<string, Stream> Files()
         {
@@ -103,7 +100,7 @@ namespace SMSApi.Api.Action
 
         public VMSSend SetTo(string to)
         {
-            To = new string[] {to};
+            To = new[] {to};
             return this;
         }
 
@@ -139,7 +136,7 @@ namespace SMSApi.Api.Action
 
         public VMSSend SetIDx(string idx)
         {
-            Idx = new string[] {idx};
+            Idx = new[] {idx};
             return this;
         }
 

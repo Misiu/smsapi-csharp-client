@@ -1,20 +1,22 @@
-using System;
-using System.Collections.Specialized;
-
 namespace SMSApi.Api.Action
 {
-	public class DeleteContact : Rest<Response.Base>
-	{
-		public DeleteContact(string contactId)
+    public class DeleteContact : Rest<Response.Base>
+    {
+        public DeleteContact(string contactId)
         {
-			ContactId = contactId;
-		}
+            ContactId = contactId;
+        }
 
-		protected override string Resource { get { return "contacts/" + ContactId; } }
+        protected override string Resource => "contacts/" + ContactId;
 
-		protected override RequestMethod Method { get { return RequestMethod.DELETE; } }
+        protected override RequestMethod Method => RequestMethod.DELETE;
 
-		private string contactId;
-		public string ContactId { get { return contactId; } private set { contactId = value; } }
-	}
+        private string _contactId;
+
+        public string ContactId
+        {
+            get => _contactId;
+            private set => _contactId = value;
+        }
+    }
 }

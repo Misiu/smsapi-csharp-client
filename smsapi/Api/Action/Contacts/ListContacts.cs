@@ -5,15 +5,16 @@ namespace SMSApi.Api.Action
 {
 	public class ListContacts : Rest<Response.Contacts>
 	{
-        protected override string Resource { get { return "contacts"; } }
+        protected override string Resource => "contacts";
 
-		protected override RequestMethod Method { get { return RequestMethod.GET; } }
+        protected override RequestMethod Method => RequestMethod.GET;
 
-		protected override NameValueCollection Parameters
+        protected override NameValueCollection Parameters
 		{
 			get
 			{
-				NameValueCollection parameters = base.Parameters;
+				var parameters = base.Parameters;
+
 				if (Search       != null) parameters.Add("q",             Search);
 				if (Offset       != null) parameters.Add("offset",        Offset.Value.ToString());
 				if (Limit        != null) parameters.Add("limit",         Limit.Value.ToString());

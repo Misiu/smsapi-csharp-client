@@ -7,7 +7,8 @@ namespace SMSApi.Api.Response
     public class CheckNumber : Countable
     {
         protected CheckNumber()
-        { }
+        {
+        }
 
         [DataMember(Name = "list", IsRequired = true)]
         private List<NumberStatus> list;

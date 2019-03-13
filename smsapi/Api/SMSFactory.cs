@@ -3,10 +3,16 @@
     public class SMSFactory : Factory
     {
         public SMSFactory()
-        { }
-        public SMSFactory(Client client) : base(client) { }
+        {
+        }
 
-        public SMSFactory(Client client, IProxy proxy) : base(client, proxy) { }
+        public SMSFactory(Client client) : base(client)
+        {
+        }
+
+        public SMSFactory(Client client, IProxy proxy) : base(client, proxy)
+        {
+        }
 
         public Action.SMSDelete ActionDelete(string id = null)
         {
@@ -43,7 +49,7 @@
 
         public Action.SMSSend ActionSend(string to = null, string text = null)
         {
-            var tos = ( to == null ? null : new[] { to } );
+            var tos = (to == null ? null : new[] {to});
             return ActionSend(tos, text);
         }
 

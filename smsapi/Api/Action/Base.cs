@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace SMSApi.Api.Action
 {
-    public abstract class Base<T,TResult>
+    public abstract class Base<T, TResult>
     {
         protected Client client;
         private IProxy _proxy;
 
         protected abstract string Uri();
 
-		protected virtual RequestMethod Method => RequestMethod.POST;
+        protected virtual RequestMethod Method => RequestMethod.POST;
 
         public void Client(Client client)
         {
@@ -28,23 +28,27 @@ namespace SMSApi.Api.Action
 
         private TT ResponseToObject<TT>(Stream data)
         {
-			TT result;
-			if (data.Length > 0)
-			{
-				data.Position = 0;
-				var serializer = new DataContractJsonSerializer(typeof(TT));
-				result = (TT)serializer.ReadObject(data);
-				data.Position = 0;
-			}
-			else
-			{
-				result = Activator.CreateInstance<TT>();
-			}
+            TT result;
+            if (data.Length > 0)
+            {
+                data.Position = 0;
+                var serializer = new DataContractJsonSerializer(typeof(TT));
+                result = (TT) serializer.ReadObject(data);
+                data.Position = 0;
+            }
+            else
+            {
+                result = Activator.CreateInstance<TT>();
+            }
+
             return result;
         }
 
         protected abstract NameValueCollection Values();
-        protected virtual void Validate() { }
+
+        protected virtual void Validate()
+        {
+        }
 
         protected virtual Dictionary<string, Stream> Files()
         {
@@ -62,15 +66,15 @@ namespace SMSApi.Api.Action
         {
             Validate();
 
-            Stream data = _proxy.Execute(Uri(), Values(), Files(), Method);
+            var data = _proxy.Execute(Uri(), Values(), Files(), Method);
 
-            TResult result = default(TResult);
+            var result = default(TResult);
 
             HandleError(data);
 
             try
             {
-                T response = ResponseToObject<T>(data);
+                var response = ResponseToObject<T>(data);
                 result = ConvertResponse(response);
             }
             catch (System.Runtime.Serialization.SerializationException e)
@@ -110,7 +114,8 @@ namespace SMSApi.Api.Action
         }
 #endif
 
-        protected void HandleError(Stream data) {
+        protected void HandleError(Stream data)
+        {
 
             data.Position = 0;
 
@@ -124,6 +129,7 @@ namespace SMSApi.Api.Action
                     {
                         throw new HostException(error.Message, error.Code);
                     }
+
                     if (IsClientError(error.Code))
                     {
                         throw new ClientException(error.Message, error.Code);
@@ -134,7 +140,9 @@ namespace SMSApi.Api.Action
                     }
                 }
             }
-            catch (System.Runtime.Serialization.SerializationException) { }
+            catch (System.Runtime.Serialization.SerializationException)
+            {
+            }
 
             data.Position = 0;
         }

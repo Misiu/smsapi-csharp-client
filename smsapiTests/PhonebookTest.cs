@@ -28,11 +28,11 @@ namespace smsapiTests
 
             var groups = phonebookFactory.ActionGroupList().Execute();
 
-            foreach (var g in groups.List)
+            foreach (var g in groups.Collection)
             {
                 Assert.IsNotNull(g.Name);
-                Assert.IsNotNull(g.NumbersCount);
-                Assert.IsNotNull(g.Info);
+                Assert.IsNotNull(g.ContactsCount);
+                Assert.IsNotNull(g.Description);
             }
 
             phonebookFactory.ActionGroupDelete(group.Name)
@@ -49,20 +49,20 @@ namespace smsapiTests
                     .Execute();
 
             contact =
-                phonebookFactory.ActionContactEdit(contact.Number)
+                phonebookFactory.ActionContactEdit(contact.Id)
                     .SetFirstName("Test contact" + DateTime.Now.ToString("his") + "#edited")
                     .SetNumber(validTestNumber)
                     .Execute();
 
             var contacts = phonebookFactory.ActionContactList().Execute();
-            foreach (var c in contacts.List)
+            foreach (var c in contacts.Collection)
             {
-                System.Console.WriteLine(c.Number + " " + c.FirstName + " " + c.LastName + " " + c.Gender);
+                System.Console.WriteLine(c.Id + " " + c.FirstName + " " + c.LastName + " " + c.Gender);
             }
 
-            contact = phonebookFactory.ActionContactGet(contact.Number).Execute();
+            contact = phonebookFactory.ActionContactGet(contact.Id).Execute();
 
-            phonebookFactory.ActionContactDelete(contact.Number).Execute();
+            phonebookFactory.ActionContactDelete(contact.Id).Execute();
         }
     }
 }

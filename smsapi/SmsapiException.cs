@@ -9,9 +9,6 @@
             _code = code;
         }
 
-        public int GetCode()
-        {
-            return _code;
-        }
+        public int GetCode() => _code;
     }
 }

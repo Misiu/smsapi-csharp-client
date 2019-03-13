@@ -1,24 +1,31 @@
-using System;
-using System.Collections.Specialized;
-
 namespace SMSApi.Api.Action
 {
-	public class UnbindContactFromGroup : Rest<Response.Base>
-	{
-		public UnbindContactFromGroup(string contactId, string groupId)
+    public class UnbindContactFromGroup : Rest<Response.Base>
+    {
+        public UnbindContactFromGroup(string contactId, string groupId)
         {
-			ContactId = contactId;
-			GroupId = groupId;
-		}
+            ContactId = contactId;
+            GroupId = groupId;
+        }
 
-		protected override string Resource { get { return "contacts/" + contactId + "/groups/" + groupId; } }
+        protected override string Resource => "contacts/" + _contactId + "/groups/" + groupId;
 
-		protected override RequestMethod Method { get { return RequestMethod.DELETE; } }
+        protected override RequestMethod Method => RequestMethod.DELETE;
 
-		private string contactId;
-		public string ContactId { get { return contactId; } private set { contactId = value; } }
+        private string _contactId;
 
-		private string groupId;
-		public string GroupId { get { return groupId; } private set { groupId = value; } }
-	}
+        public string ContactId
+        {
+            get => _contactId;
+            private set => _contactId = value;
+        }
+
+        private string groupId;
+
+        public string GroupId
+        {
+            get => groupId;
+            private set => groupId = value;
+        }
+    }
 }

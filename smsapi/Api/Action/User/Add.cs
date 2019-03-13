@@ -46,7 +46,7 @@ namespace SMSApi.Api.Action
 
         protected override NameValueCollection Values()
         {
-            NameValueCollection collection = new NameValueCollection
+            var collection = new NameValueCollection
             {
                 {"format", "json"},
                 {"username", client.GetUsername()},

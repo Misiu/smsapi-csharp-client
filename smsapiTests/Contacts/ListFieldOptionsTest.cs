@@ -6,7 +6,7 @@ namespace smsapiTests.Contacts
     [TestClass]
     public class ListFieldOptionsTest : TestBase
     {
-        Field field;
+        //Field field;
 
         [TestMethod]
         public void TestListFieldOptions()

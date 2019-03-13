@@ -9,27 +9,24 @@ namespace SMSApi.Api.Action
             return "sms.do";
         }
 
-        protected string id;
+        private string _id;
 
         protected override NameValueCollection Values()
         {
-            NameValueCollection collection = new NameValueCollection
+            var collection = new NameValueCollection
             {
                 {"format", "json"},
                 {"username", client.GetUsername()},
                 {"password", client.GetPassword()},
-                {"sch_del", id}
+                {"sch_del", _id}
             };
-
-
-
 
             return collection;
         }
 
         public SMSDelete Id(string id)
         {
-            this.id = id;
+            _id = id;
             return this;
         }
     }

@@ -21,9 +21,9 @@ namespace smsapiTests.Contacts
         public void Initialize()
         {
             var contactsResponse = contactsFactory.ListContacts().SetPhoneNumber(validTestNumber).Execute();
-            if (contactsResponse.List.Count > 0)
+            if (contactsResponse.Collection.Count > 0)
             {
-                contact = contactsResponse.List[0];
+                contact = contactsResponse.Collection[0];
             } else
             {
                 contact = contactsFactory.CreateContact().SetPhoneNumber(validTestNumber).Execute();

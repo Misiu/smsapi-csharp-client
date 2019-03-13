@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-namespace SMSApi.Api.Action
+﻿namespace SMSApi.Api.Action
 {
     public abstract class Send : BaseSimple<Response.Status>
     {

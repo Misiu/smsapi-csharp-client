@@ -7,7 +7,8 @@ namespace SMSApi.Api.Response
     public class Senders : Countable
     {
         private Senders()
-        { }
+        {
+        }
 
         [DataMember(Name = "list", IsRequired = false)]
         private List<Sender> list;

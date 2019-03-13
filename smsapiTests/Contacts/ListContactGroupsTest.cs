@@ -14,22 +14,22 @@ namespace smsapiTests.Contacts
         {
             var groupsResponse = contactsFactory.ListContactGroups(contact.Id).Execute();
 
-            Assert.AreEqual(1, groupsResponse.List.Count);
-            Assert.AreEqual(group.Id, groupsResponse.List[0].Id);
+            Assert.AreEqual(1, groupsResponse.Collection.Count);
+            Assert.AreEqual(group.Id, groupsResponse.Collection[0].Id);
         }
 
         [TestInitialize]
         public void Initialize()
         {
             var contactsResponse = contactsFactory.ListContacts().SetPhoneNumber(validTestNumber).Execute();
-            if (contactsResponse.List.Count > 0)
-                contact = contactsResponse.List[0];
+            if (contactsResponse.Collection.Count > 0)
+                contact = contactsResponse.Collection[0];
             else
                 contact = contactsFactory.CreateContact().SetPhoneNumber(validTestNumber).Execute();
 
             var groupsResponse = contactsFactory.ListGroups().SetName("example group").Execute();
-            if (groupsResponse.List.Count > 0)
-                group = groupsResponse.List[0];
+            if (groupsResponse.Collection.Count > 0)
+                group = groupsResponse.Collection[0];
             else
                 group = contactsFactory.CreateGroup().SetName("example group").Execute();
 

@@ -38,7 +38,7 @@ namespace smsapiTests.Contacts
         {
             var listResponse = contactsFactory.ListGroups().SetName("example group 1").Execute();
 
-            Assert.AreEqual(1, listResponse.List.Count);
+            Assert.AreEqual(1, listResponse.Collection.Count);
         }
 
         [TestMethod]
@@ -46,28 +46,28 @@ namespace smsapiTests.Contacts
         {
             var listResponse = contactsFactory.ListGroups().SetName("example group not found").Execute();
 
-            Assert.AreEqual(0, listResponse.List.Count);
+            Assert.AreEqual(0, listResponse.Collection.Count);
         }
 
         [TestInitialize]
         public void Initialize()
         {
             var response = contactsFactory.ListGroups().SetName("example group 1").Execute();
-            if (response.List.Count == 0)
+            if (response.Collection.Count == 0)
             {
                 contactsFactory.CreateGroup().SetName("example group 1").Execute();
             }
 
             response = contactsFactory.ListGroups().SetName("example group 2").Execute();
-            if (response.List.Count == 0)
+            if (response.Collection.Count == 0)
             {
                 contactsFactory.CreateGroup().SetName("example group 2").Execute();
             }
 
             response = contactsFactory.ListGroups().SetName("example group not found").Execute();
-            if (response.List.Count > 0)
+            if (response.Collection.Count > 0)
             {
-                contactsFactory.DeleteGroup(response.List[0].Id).Execute();
+                contactsFactory.DeleteGroup(response.Collection[0].Id).Execute();
             }
         }
     }

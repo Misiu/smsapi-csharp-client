@@ -24,7 +24,7 @@ namespace smsapiTests.Contacts
         public void Initialize()
         {
             var fields = contactsFactory.ListFields().Execute();
-            foreach (var field in fields.List) {
+            foreach (var field in fields.Collection) {
                 if ("FieldX".Equals(field.Name))
                     createdField = field;
                 else if ("FieldY".Equals(field.Name))

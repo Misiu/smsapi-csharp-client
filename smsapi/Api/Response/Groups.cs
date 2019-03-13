@@ -6,6 +6,7 @@ namespace SMSApi.Api.Response
     public class Groups : BasicCollection<Group>
     {
         private Groups()
-        { }
+        {
+        }
     }
 }

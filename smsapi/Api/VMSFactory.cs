@@ -4,8 +4,12 @@ namespace SMSApi.Api
     public class VMSFactory : Factory
     {
         public VMSFactory()
-        { }
-        public VMSFactory(Client client) : base(client) { }
+        {
+        }
+
+        public VMSFactory(Client client) : base(client)
+        {
+        }
 
         public VMSFactory(Client client, IProxy proxy) : base(client, proxy)
         {
@@ -13,7 +17,7 @@ namespace SMSApi.Api
 
         public Action.VMSDelete ActionDelete(string id = null)
         {
-            Action.VMSDelete action = new Action.VMSDelete();
+            var action = new Action.VMSDelete();
 
             action.Client(client);
             action.Proxy(proxy);
@@ -24,7 +28,7 @@ namespace SMSApi.Api
 
         public Action.VMSGet ActionGet(string id = null)
         {
-            Action.VMSGet action = new Action.VMSGet();
+            var action = new Action.VMSGet();
 
             action.Client(client);
             action.Proxy(proxy);
@@ -35,7 +39,7 @@ namespace SMSApi.Api
 
         public Action.VMSGet ActionGet(string[] id)
         {
-            Action.VMSGet action = new Action.VMSGet();
+            var action = new Action.VMSGet();
 
             action.Client(client);
             action.Proxy(proxy);
@@ -46,13 +50,13 @@ namespace SMSApi.Api
 
         public Action.VMSSend ActionSend(string to = null)
         {
-            string[] tos = ( to == null ? null : new string[] { to } );
+            var tos = (to == null ? null : new[] {to});
             return ActionSend(tos);
         }
 
         public Action.VMSSend ActionSend(string[] to)
         {
-            Action.VMSSend action = new Action.VMSSend();
+            var action = new Action.VMSSend();
             action.Client(client);
             action.Proxy(proxy);
             action.SetTo(to);

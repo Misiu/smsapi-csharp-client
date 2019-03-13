@@ -26,8 +26,8 @@ namespace smsapiTests.Contacts
         public void Initialize()
         {
             var groupsResponse = contactsFactory.ListGroups().SetName("example group").Execute();
-            if (groupsResponse.List.Count > 0)
-                contactsFactory.DeleteGroup(groupsResponse.List[0].Id).Execute();
+            if (groupsResponse.Collection.Count > 0)
+                contactsFactory.DeleteGroup(groupsResponse.Collection[0].Id).Execute();
 
             group = contactsFactory.CreateGroup().SetName("example group").Execute();
 

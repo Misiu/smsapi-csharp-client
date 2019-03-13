@@ -22,7 +22,7 @@ namespace smsapiTests.Contacts
         {
             var contactsResponse = contactsFactory.ListContacts().SetPhoneNumber(validTestNumber).Execute();
             
-            foreach (var contact in contactsResponse.List)
+            foreach (var contact in contactsResponse.Collection)
             {
                 contactsFactory.DeleteContact(contact.Id).Execute();
             }

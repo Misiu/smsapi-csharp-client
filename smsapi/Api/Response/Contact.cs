@@ -3,82 +3,128 @@ using System.Runtime.Serialization;
 
 namespace SMSApi.Api.Response
 {
-	[DataContract]
-	public class Contact : Base
-	{
-		public const string MaleGender      = "male";
-		public const string FemaleGender    = "female";
-		public const string UndefinedGender = "undefined";
+    [DataContract]
+    public class Contact : Base
+    {
+        public const string MaleGender = "male";
+        public const string FemaleGender = "female";
+        public const string UndefinedGender = "undefined";
 
         [DataMember(Name = "id", IsRequired = false)]
-		public readonly string Id;
+        public readonly string Id;
 
-		[DataMember(Name = "idx", IsRequired = false)]
-		public readonly string Idx;
+        [DataMember(Name = "idx", IsRequired = false)]
+        public readonly string Idx;
 
-		[DataMember(Name = "first_name", IsRequired = false)]
-		public readonly string FirstName;
+        [DataMember(Name = "first_name", IsRequired = false)]
+        public readonly string FirstName;
 
-		[DataMember(Name = "last_name", IsRequired = false)]
-		public readonly string LastName;
+        [DataMember(Name = "last_name", IsRequired = false)]
+        public readonly string LastName;
 
-		private DateTime? birthdayDate;
+        private DateTime? _birthdayDate;
 
-		[DataMember(Name = "birthday_date", IsRequired = false)]
-		private string BirthdayDateSerializationHelper { set { if (value != null) birthdayDate = DateTime.Parse(value); } get { return ""; } }
+        [DataMember(Name = "birthday_date", IsRequired = false)]
+        private string BirthdayDateSerializationHelper
+        {
+            set
+            {
+                if (value != null) _birthdayDate = DateTime.Parse(value);
+            }
+            get => "";
+        }
 
-		public DateTime? BirthdayDate { get { return birthdayDate; } }
+        public DateTime? BirthdayDate => _birthdayDate;
 
-		[DataMember(Name = "phone_number", IsRequired = false)]
-		public readonly string PhoneNumber;
+        [DataMember(Name = "phone_number", IsRequired = false)]
+        public readonly string PhoneNumber;
 
-		[DataMember(Name = "email", IsRequired = false)]
-		public readonly string Email;
+        [DataMember(Name = "email", IsRequired = false)]
+        public readonly string Email;
 
-		[DataMember(Name = "gender", IsRequired = false)]
-		public readonly string Gender;
+        [DataMember(Name = "gender", IsRequired = false)]
+        public readonly string Gender;
 
-		[DataMember(Name = "city", IsRequired = false)]
-		public readonly string City;
+        [DataMember(Name = "city", IsRequired = false)]
+        public readonly string City;
 
-		[DataMember(Name = "source", IsRequired = false)]
-		public readonly string Source;
+        [DataMember(Name = "source", IsRequired = false)]
+        public readonly string Source;
 
-		private DateTime? dateCreated;
-		[DataMember(Name = "date_created", IsRequired = false)]
-		private string DateCreatedSerializationHelper { set { dateCreated = DateTime.Parse(value); } get { return ""; } }
-		public DateTime? DateCreated { get { return dateCreated; } }
+        private DateTime? _dateCreated;
 
-		private DateTime? dateUpdated;
-		[DataMember(Name = "date_updated", IsRequired = false)]
-		private string DateUpdatedSerializationHelper { set { dateUpdated = DateTime.Parse(value); } get { return ""; } }
-		public DateTime? DateUpdated { get { return dateUpdated; } }
+        [DataMember(Name = "date_created", IsRequired = false)]
+        private string DateCreatedSerializationHelper
+        {
+            set => _dateCreated = DateTime.Parse(value);
+            get => "";
+        }
 
-		[DataMember(Name = "description", IsRequired = false)]
-		public readonly string Description;
+        public DateTime? DateCreated => _dateCreated;
 
-		[Obsolete("use Id instead")]
-		[DataMember(Name = "number", IsRequired = false)]
-		public readonly string Number;
+        private DateTime? _dateUpdated;
 
-		[Obsolete("use Description instead")]
-		[DataMember(Name = "info", IsRequired = false)]
-		public readonly string info;
+        [DataMember(Name = "date_updated", IsRequired = false)]
+        private string DateUpdatedSerializationHelper
+        {
+            set => _dateUpdated = DateTime.Parse(value);
+            get => "";
+        }
 
-		[Obsolete("use BirthdayDate instead")]
-		[DataMember(Name = "birthday", IsRequired = false)]
-		public readonly string Birthday;
+        public DateTime? DateUpdated => _dateUpdated;
 
-		[DataMember(Name = "date_add", IsRequired = false)]
-		private uint DateAddSerializationHelper { set { DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc); dateCreated = origin.AddSeconds(value); } get { return 0; } }
+        [DataMember(Name = "description", IsRequired = false)]
+        public readonly string Description;
 
-		[Obsolete("use DateCreated instead")]
-		public uint DateAdd { get { DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc); return dateCreated != null ? (uint)(dateCreated.Value.ToUniversalTime() - origin).TotalSeconds : 0; } }
+        [Obsolete("use Id instead")] [DataMember(Name = "number", IsRequired = false)]
+        public readonly string Number;
 
-		[DataMember(Name = "date_mod", IsRequired = false)]
-		private uint DateModSerializationHelper { set { DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc); dateUpdated = origin.AddSeconds(value); } get { return 0; } }
+        [Obsolete("use Description instead")] [DataMember(Name = "info", IsRequired = false)]
+        public readonly string info;
 
-		[Obsolete("use DateUpdated instead")]
-		public uint DateMod { get { DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc); return dateUpdated != null? (uint)(dateUpdated.Value.ToUniversalTime() - origin).TotalSeconds : 0; } }
-	}
+        [Obsolete("use BirthdayDate instead")] [DataMember(Name = "birthday", IsRequired = false)]
+        public readonly string Birthday;
+
+        [DataMember(Name = "date_add", IsRequired = false)]
+        private uint DateAddSerializationHelper
+        {
+            set
+            {
+                var origin = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+                _dateCreated = origin.AddSeconds(value);
+            }
+            get => 0;
+        }
+
+        [Obsolete("use DateCreated instead")]
+        public uint DateAdd
+        {
+            get
+            {
+                var origin = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+                return _dateCreated != null ? (uint) (_dateCreated.Value.ToUniversalTime() - origin).TotalSeconds : 0;
+            }
+        }
+
+        [DataMember(Name = "date_mod", IsRequired = false)]
+        private uint DateModSerializationHelper
+        {
+            set
+            {
+                var origin = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+                _dateUpdated = origin.AddSeconds(value);
+            }
+            get => 0;
+        }
+
+        [Obsolete("use DateUpdated instead")]
+        public uint DateMod
+        {
+            get
+            {
+                var origin = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+                return _dateUpdated != null ? (uint) (_dateUpdated.Value.ToUniversalTime() - origin).TotalSeconds : 0;
+            }
+        }
+    }
 }

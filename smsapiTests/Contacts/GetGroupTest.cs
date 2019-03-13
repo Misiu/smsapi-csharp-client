@@ -24,12 +24,12 @@ namespace smsapiTests.Contacts
         public void Initialize()
         {
             var groups = contactsFactory.ListGroups().SetName("GroupY").Execute();
-            if (groups.List.Count > 0)
-                contactsFactory.DeleteGroup(groups.List[0].Id).Execute();
+            if (groups.Collection.Count > 0)
+                contactsFactory.DeleteGroup(groups.Collection[0].Id).Execute();
 
             groups = contactsFactory.ListGroups().SetName("exampleGroup").Execute();
-            if (groups.List.Count > 0)
-                group = groups.List[0];
+            if (groups.Collection.Count > 0)
+                group = groups.Collection[0];
             else
                 group = contactsFactory.CreateGroup().SetName("exampleGroup").Execute();
         }

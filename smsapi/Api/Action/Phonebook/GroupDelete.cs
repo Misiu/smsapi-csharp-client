@@ -9,10 +9,7 @@ namespace SMSApi.Api.Action
             _removeContacts = false;
         }
 
-        protected override string Uri()
-        {
-            return "phonebook.do";
-        }
+        protected override string Uri() => "phonebook.do";
 
         private string _name;
         private bool _removeContacts;

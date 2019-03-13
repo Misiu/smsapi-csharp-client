@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace SMSApi.Api
+﻿namespace SMSApi.Api
 {
     public class HLRFactory : Factory
     {
         public HLRFactory()
-        { }
-        public HLRFactory(Client client) : base(client) { }
+        {
+        }
+
+        public HLRFactory(Client client) : base(client)
+        {
+        }
 
         public HLRFactory(Client client, IProxy proxy) : base(client, proxy)
         {

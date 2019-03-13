@@ -1,19 +1,18 @@
-using System;
 using System.Collections.Specialized;
 
 namespace SMSApi.Api.Action
 {
 	public class ListGroups : Rest<Response.Groups>
 	{
-        protected override string Resource { get { return "contacts/groups"; } }
+        protected override string Resource => "contacts/groups";
 
-		protected override RequestMethod Method { get { return RequestMethod.GET; } }
+        protected override RequestMethod Method => RequestMethod.GET;
 
-		protected override NameValueCollection Parameters
+        protected override NameValueCollection Parameters
 		{
 			get
 			{
-				NameValueCollection parameters = base.Parameters;
+				var parameters = base.Parameters;
 				if (Id   != null) parameters.Add("id",   Id);
 				if (Name != null) parameters.Add("name", Name);
 				return parameters;

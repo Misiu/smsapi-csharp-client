@@ -1,5 +1,4 @@
-﻿
-namespace SMSApi.Api
+﻿namespace SMSApi.Api
 {
     public class ActionException : SmsapiException
     {

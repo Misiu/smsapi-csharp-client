@@ -4,26 +4,25 @@ namespace SMSApi.Api.Action
 {
     public class SenderDelete : BaseSimple<Response.Base>
     {
-        protected override string Uri() { return "sender.do"; }
+        protected override string Uri() => "sender.do";
 
-        private string name;
+        private string _name;
 
         public SenderDelete Name(string name)
         {
-            this.name = name;
+            _name = name;
             return this;
         }
 
         protected override NameValueCollection Values()
         {
-            NameValueCollection collection = new NameValueCollection();
-
-            collection.Add("format", "json");
-
-            collection.Add("username", client.GetUsername());
-            collection.Add("password", client.GetPassword());
-
-            collection.Add("delete", name);
+            var collection = new NameValueCollection
+            {
+                {"format", "json"},
+                {"username", client.GetUsername()},
+                {"password", client.GetPassword()},
+                {"delete", _name}
+            };
 
             return collection;
         }

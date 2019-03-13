@@ -7,31 +7,21 @@ namespace SMSApi.Api.Response
     public class Status : Countable
     {
         private Status()
-        { }
-
-        [DataMember(Name = "list", IsRequired = false)]
-        private List<MessageStatus> list;
-
-        public List<MessageStatus> List
         {
-            get
-            {
-                if (list == null)
-                    list = new List<MessageStatus>();
-
-                return list;
-            }
-
-            set { }
         }
 
-		[DataMember(Name = "message", IsRequired = false)]
-		public readonly string Message;
+        [DataMember(Name = "list", IsRequired = false)]
+        private List<MessageStatus> _list;
 
-		[DataMember(Name = "length", IsRequired = false)]
-		public readonly int? Length;
+        public List<MessageStatus> List => _list ?? (_list = new List<MessageStatus>());
 
-		[DataMember(Name = "parts", IsRequired = false)]
-		public readonly int? Parts;
+        [DataMember(Name = "message", IsRequired = false)]
+        public readonly string Message;
+
+        [DataMember(Name = "length", IsRequired = false)]
+        public readonly int? Length;
+
+        [DataMember(Name = "parts", IsRequired = false)]
+        public readonly int? Parts;
     }
 }

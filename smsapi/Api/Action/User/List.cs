@@ -1,5 +1,4 @@
 ﻿using System.Collections.Specialized;
-using System.Collections.Generic;
 
 namespace SMSApi.Api.Action
 {

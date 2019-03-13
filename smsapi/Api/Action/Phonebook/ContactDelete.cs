@@ -4,18 +4,18 @@ namespace SMSApi.Api.Action
 {
     public class PhonebookContactDelete : BaseSimple<Response.Base>
     {
-        protected override string Uri() { return "phonebook.do"; }
+        protected override string Uri() => "phonebook.do";
 
         private string _number;
 
         protected override NameValueCollection Values()
         {
-            NameValueCollection collection = new NameValueCollection
+            var collection = new NameValueCollection
             {
                 {"format", "json"},
-                { "username", client.GetUsername()},
-                { "password", client.GetPassword()},
-                { "delete_contact", _number}
+                {"username", client.GetUsername()},
+                {"password", client.GetPassword()},
+                {"delete_contact", _number}
             };
 
             return collection;

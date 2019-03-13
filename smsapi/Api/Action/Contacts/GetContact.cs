@@ -1,20 +1,22 @@
-using System;
-using System.Collections.Specialized;
-
 namespace SMSApi.Api.Action
 {
-	public class GetContact : Rest<Response.Contact>
-	{
-		public GetContact(string contactId)
+    public class GetContact : Rest<Response.Contact>
+    {
+        public GetContact(string contactId)
         {
-			ContactId = contactId;
-		}
+            ContactId = contactId;
+        }
 
-		protected override string Resource { get { return "contacts/" + ContactId; } }
+        protected override string Resource => "contacts/" + ContactId;
 
-		protected override RequestMethod Method { get { return RequestMethod.GET; } }
+        protected override RequestMethod Method => RequestMethod.GET;
 
-		private string contactId;
-		public string ContactId { get { return contactId; } private set { contactId = value; } }
-	}
+        private string _contactId;
+
+        public string ContactId
+        {
+            get => _contactId;
+            private set => _contactId = value;
+        }
+    }
 }

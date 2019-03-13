@@ -25,10 +25,10 @@ namespace SMSApi.Api.Action
             if (Group != null)
                 collection.Add("group", Group);
 
-            if (Subject != null)
-                collection.Add("subject", Subject);
+            if (_subject != null)
+                collection.Add("subject", _subject);
 
-            collection.Add("smil", Smil);
+            collection.Add("smil", _smil);
 
             if (DateSent != null)
                 collection.Add("date", DateSent);
@@ -55,18 +55,18 @@ namespace SMSApi.Api.Action
                 throw new ArgumentException("Cannot use 'to' and 'group' at the same time!");
             }
 
-            if (Smil == null || Smil.Length < 1)
+            if (string.IsNullOrEmpty(_smil))
             {
                 throw new ArgumentException("Cannot send message without smil!");
             }
         }
 
-        private string Subject;
-        private string Smil;
+        private string _subject;
+        private string _smil;
 
         public MMSSend SetTo(string to)
         {
-            To = new string[] {to};
+            To = new[] {to};
             return this;
         }
 
@@ -96,7 +96,7 @@ namespace SMSApi.Api.Action
 
         public MMSSend SetIDx(string idx)
         {
-            Idx = new string[] {idx};
+            Idx = new[] {idx};
             return this;
         }
 
@@ -114,13 +114,13 @@ namespace SMSApi.Api.Action
 
         public MMSSend SetSubject(string subject)
         {
-            Subject = subject;
+            _subject = subject;
             return this;
         }
 
         public MMSSend SetSmil(string smil)
         {
-            Smil = smil;
+            _smil = smil;
             return this;
         }
 
